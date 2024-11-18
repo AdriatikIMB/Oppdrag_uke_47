@@ -27,9 +27,6 @@ def hovedprogram():
 if __name__ == "__main__":
     hovedprogram()
 
-def funksjon():
-    print("True")
-     
 
     
 
