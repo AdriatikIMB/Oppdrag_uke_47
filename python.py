@@ -1,5 +1,12 @@
+import os 
+
+cwd = os.getcwd()
+print(cwd)
+
+
 # Funksjon for å lese inn tekst fra en fil
 def lesInnTekst(filnavn):
+    print(filnavn)
     try:
         with open(filnavn, 'r', encoding='utf-8') as f:
             return f.readlines()
