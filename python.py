@@ -33,7 +33,28 @@ def hovedprogram():
     filnavn = input("Skriv inn navnet på tekstfila du vil åpne: ")
     tekst = lesInnTekst(filnavn)
 
+    if tekst:
+        while True:
+            print("\nHva vil du gjøre?")
+            print("1. Se innholdet i filen")
+            print("2. Søk etter et ord")
+            print("3. Avslutt")
 
+            valg = input("Velg et alternativ (1-3): ")
+
+            if valg == '1':
+                print("\nInnholdet i filen er:")
+                printTekst(tekst)
+            elif valg == '2':
+                ord = input("Skriv inn ordet du vil søke etter: ")
+                søkOrd(tekst, ord)
+            elif valg == '3':
+                print("Takk for at du brukte søkemotoren!")
+                break
+            else:
+                print("Ugyldig valg, prøv igjen.")
+    else:
+        print("Ingen tekst å vise.")
 
 # Kjøre hovedprogrammet
 if __name__ == "__main__":
