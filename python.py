@@ -44,10 +44,6 @@ def hovedprogram():
     filnavn = input("Skriv inn navnet på tekstfila du vil åpne: ")
     tekst = lesInnTekst(filnavn)
 
-    if not tekst:
-        print("Ingen tekst å vise.")
-        return
-
     alternativer = {
         '1': lambda: printTekst(tekst),
         '2': lambda: søkOrd(tekst, input("Skriv inn ordet du vil søke etter: ")),
