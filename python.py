@@ -37,24 +37,8 @@ def tellOrd(tekst, ord):
     antall = sum(linje.lower().count(ord.lower()) for linje in tekst)
     print(f"Ordet '{ord}' forekommer {antall} ganger i teksten.")
 
-# Hovedprogram med meny
-def hovedprogram():
-    print("Velkommen til den enkle søkemotoren!")
-
-    filnavn = input("Skriv inn navnet på tekstfila du vil åpne: ")
-    tekst = lesInnTekst(filnavn)
-
-    if not tekst:
-        print("Ingen tekst å vise.")
-        return
-
-    alternativer = {
-        '1': lambda: printTekst(tekst),
-        '2': lambda: søkOrd(tekst, input("Skriv inn ordet du vil søke etter: ")),
-        '3': lambda: finnLinje(tekst, input("Skriv inn ordet du vil finne linje for: ")),
-        '4': lambda: tellOrd(tekst, input("Skriv inn ordet du vil telle: ")),
-    }
-
+# Funksjon for å vise meny og håndtere brukerens valg
+def visMeny(tekst):
     while True:
         print("\nHva vil du gjøre?")
         print("1. Se innholdet i filen")
@@ -65,13 +49,36 @@ def hovedprogram():
 
         valg = input("Velg et alternativ (1-5): ")
         
-        if valg == '5':
+        if valg == '1':
+            printTekst(tekst)
+        elif valg == '2':
+            ord = input("Skriv inn ordet du vil søke etter: ")
+            søkOrd(tekst, ord)
+        elif valg == '3':
+            ord = input("Skriv inn ordet du vil finne linje for: ")
+            finnLinje(tekst, ord)
+        elif valg == '4':
+            ord = input("Skriv inn ordet du vil telle: ")
+            tellOrd(tekst, ord)
+        elif valg == '5':
             print("Takk for at du brukte søkemotoren!")
             break
-        elif valg in alternativer:
-            alternativer[valg]()
         else:
             print("Ugyldig valg, prøv igjen.")
+
+# Hovedprogram
+def hovedprogram():
+    print("Velkommen til den enkle søkemotoren!")
+
+    filnavn = input("Skriv inn navnet på tekstfila du vil åpne: ")
+    tekst = lesInnTekst(filnavn)
+
+    if not tekst:
+        print("Ingen tekst å vise.")
+        return
+
+    # Vis menyen for brukeren og la dem velge handling
+    visMeny(tekst)
 
 # Kjøre hovedprogrammet
 if __name__ == "__main__":
