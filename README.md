@@ -45,5 +45,3 @@ Dette programmet gir en enkel søkemotor for å søke i tekstfiler. Brukeren kan
 3. **Interaktiv bruk:** Brukeren velger ett av alternativene og får spesifikke instrukser for hvordan de kan bruke programmet til å søke etter ord, finne linjer, eller telle ord.
 4. **Avslutning:** Når brukeren er ferdig med å bruke programmet, kan de velge å avslutte.
 
-## Eksempel på menyvalg:
-
