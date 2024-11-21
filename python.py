@@ -45,6 +45,16 @@ def søkFlereOrd(tekst, ordliste):
             if ord.lower() in linje.lower():
                 print(f"Ordet '{ord}' funnet på linje {linjenummer}: {linje.strip()}")
 
+# Funksjon for å finne de mest brukte ordene
+def finnHyppigsteOrd(tekst, antall=10):
+    alle_ord = []
+    for linje in tekst:
+        alle_ord.extend(linje.lower().split())
+    tellinger = Counter(alle_ord)
+    print(f"\nDe {antall} mest brukte ordene er:")
+    for ord, frekvens in tellinger.most_common(antall):
+        print(f"'{ord}': {frekvens} ganger")
+
 # Funksjon for å vise meny og håndtere brukerens valg
 def visMeny(tekst):
     while True:
@@ -54,9 +64,10 @@ def visMeny(tekst):
         print("3. Finn linje med et ord")
         print("4. Tell hvor mange ganger et ord forekommer")
         print("5. Søk etter flere ord")
-        print("6. Avslutt")
+        print("6. Finn de mest brukte ordene")
+        print("7. Avslutt")
 
-        valg = input("Velg et alternativ (1-6): ").strip()
+        valg = input("Velg et alternativ (1-7): ").strip()
 
         if valg == '1':
             printTekst(tekst)
@@ -73,6 +84,8 @@ def visMeny(tekst):
             ordliste = input("Skriv inn ordene du vil søke etter (separert med komma): ").split(',')
             søkFlereOrd(tekst, [ord.strip() for ord in ordliste])
         elif valg == '6':
+            finnHyppigsteOrd(tekst)
+        elif valg == '7':
             print("Takk for at du brukte søkemotoren!")
             break
         else:
