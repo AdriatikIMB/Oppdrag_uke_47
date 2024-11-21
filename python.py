@@ -1,4 +1,5 @@
 import os
+from collections import Counter
 
 # Funksjon for å lese inn tekst fra en fil
 def lesInnTekst(filnavn):
@@ -37,6 +38,13 @@ def tellOrd(tekst, ord):
     antall = sum(linje.lower().count(ord.lower()) for linje in tekst)
     print(f"Ordet '{ord}' forekommer {antall} ganger i teksten.")
 
+# Funksjon for å søke etter flere ord samtidig
+def søkFlereOrd(tekst, ordliste):
+    for linjenummer, linje in enumerate(tekst, start=1):
+        for ord in ordliste:
+            if ord.lower() in linje.lower():
+                print(f"Ordet '{ord}' funnet på linje {linjenummer}: {linje.strip()}")
+
 # Funksjon for å vise meny og håndtere brukerens valg
 def visMeny(tekst):
     while True:
@@ -45,10 +53,11 @@ def visMeny(tekst):
         print("2. Søk etter et ord")
         print("3. Finn linje med et ord")
         print("4. Tell hvor mange ganger et ord forekommer")
-        print("5. Avslutt")
+        print("5. Søk etter flere ord")
+        print("6. Avslutt")
 
-        valg = input("Velg et alternativ (1-5): ")
-        
+        valg = input("Velg et alternativ (1-6): ").strip()
+
         if valg == '1':
             printTekst(tekst)
         elif valg == '2':
@@ -61,6 +70,9 @@ def visMeny(tekst):
             ord = input("Skriv inn ordet du vil telle: ")
             tellOrd(tekst, ord)
         elif valg == '5':
+            ordliste = input("Skriv inn ordene du vil søke etter (separert med komma): ").split(',')
+            søkFlereOrd(tekst, [ord.strip() for ord in ordliste])
+        elif valg == '6':
             print("Takk for at du brukte søkemotoren!")
             break
         else:
@@ -69,7 +81,6 @@ def visMeny(tekst):
 # Hovedprogram
 def hovedprogram():
     print("Velkommen til den enkle søkemotoren!")
-
     filnavn = input("Skriv inn navnet på tekstfila du vil åpne: ")
     tekst = lesInnTekst(filnavn)
 
